@@ -1,0 +1,16 @@
+
+*.wflow
+
+*.plist
+
+C : C++/_OpenTerminal.app/Contents/MacOS/Application Stub
+
+*.nib
+
+*.icns
+
+Java/_OpenTerminal.app/Contents/MacOS/Application Stub
+
+*.out
+
+*.class

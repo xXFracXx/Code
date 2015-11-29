@@ -1,0 +1,85 @@
+<map proto="1.4.0">
+  <name>GrifBall</name>
+  <version>1.0.0</version>
+  <objective>Carry the flag to the your net on the other team's side 5 times to win!</objective>
+  <authors>
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb"/> <!-- Frac -->
+  </authors>
+  <contributors>
+    <contributor uuid="f70b7a8f-93b2-480f-9d54-88e21485a042">XML (Proof-Reading)</contributor> <!-- Diamyx -->
+  </contributors>
+  <teams>
+    <team id="blue" color="blue" max="5">Blue</team>
+    <team id="red" color="dark red" max="5">Red</team>
+  </teams>
+  <score>
+    <limit>5</limit>
+  </score>
+  <flags>
+    <flag id="flag" name="Flag" shared="true" color="white">
+      <post id="post" yaw="0" recover-time="oo" respawn-time="0">0,6,0</post>
+      <net id="blue-net" owner="blue" points="1" post="post" >
+        <region>
+          <cuboid id="red-net-pos" min="1,5,22" max="-1,10,-24"/>
+        </region>
+      </net>
+      <net id="red-net" owner="red" points="1" post="post" >
+        <region>
+          <cuboid id="blue-net-pos" min="-1,5,-22" max="1,10,-24"/>
+        </region>
+      </net>
+    </flag>
+  </flags>
+  <kits>
+    <kit id="spawn">
+      <item slot="0" name="`b`l- `kA`r`b`l - Gravity Hammer - `kA`r`b`l -" enchantment="knockback:1" unbreakable="true">diamond axe</item>
+      <item slot="1" name="`f`l- `kA`r`f`l - Energy Sword - `kA`r`f`l -" enchantment="sharpness:8" unbreakable="true">iron sword</item>
+      <potion duration="2" amplifier="1">heal</potion>
+      <potion duration="4">damage resistance</potion>
+      <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="blue-spawn" parents="spawn">
+      <helmet color="0066cc" damage="-3000">leather helmet</helmet>
+      <chestplate color="0066cc" damage="-3000">leather chestplate</chestplate>
+      <leggings color="0066cc" damage="-3000">leather leggings</leggings>
+      <boots color="0066cc" damage="-3000">leather boots</boots>
+    </kit>
+    <kit id="red-spawn" parents="spawn">
+      <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+      <chestplate color="cd0000" damage="-3000">leather chestplate</chestplate>
+      <leggings color="cd0000" damage="-3000">leather leggings</leggings>
+      <boots color="cd0000" damage="-3000">leather boots</boots>
+    </kit>
+  </kits>
+  <spawns>
+    <spawn team="blue" kit="blue-spawn">
+      <regions yaw="90">
+        <cuboid min="5,5,22" max="3,7,24"/>
+        <cuboid min="-3,5,22" max="-5,7,24"/>
+      </regions>
+    </spawn>
+    <spawn team="red" kit="red-spawn">
+      <regions yaw="0">
+        <cuboid min="-5,5,-22" max="-3,7,-24"/>
+        <cuboid min="3,5,-22" max="5,7,-24"/>
+      </regions>
+    </spawn>
+    <default>
+      <regions>
+        <cuboid min="30,7,24" max="37,10,-24"/>
+        <cuboid min="-30,7,24" max="-37,10,-24"/>
+      </regions>
+    </default>
+  </spawns>
+  <itemremove>
+    <item>diamond axe</item>
+    <item>iron sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+  </itemremove>
+  <hunger>
+    <depletion>off</depletion>
+  </hunger>
+</map>

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Uchuu</name>
+<version>1.0.0</version>
+<objective>
+    Obj
+</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" /> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="06078e7e-6a7b-4d31-8f74-853072b182bb">XML Slave</contributor> <!-- Frac -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="27">Blue</team>
+    <team id="red" color="dark red" max="27">Red</team>
+</teams>
+<spawns safe="true">
+    <spawn team="blue" kit="blue-spawn">.
+        <regions yaw="-45">
+            <cuboid min="-67,51,-67" max="-69,52,-69"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-spawn">
+        <regions yaw="135">
+            <cuboid min="67,51,67" max="69,52,69"/>
+        </regions>
+    </spawn>
+    <default kit="obs"> <!-- random yaw -->
+        <regions>
+            <cuboid min="-61,80,61" max="-63,81,63"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="power:1" unbreakable="true">Bow</item>
+        <item slot="8" amount="64">arrow</item>
+        <potion duration="3" amplifier="10">heal</potion>
+        <potion duration="3" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit id="blue-spawn" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true">leather leggings</boots>
+        <chestplate unbreakable="true" enchantment="protection fall:2">iron boots</chestplate>
+    </kit>
+    <kit id="red-spawn" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true">leather leggings</boots>
+        <chestplate unbreakable="true" enchantment="protection fall:2">iron boots</chestplate>
+    </kit>
+</kits>
+<regions>
+  <!-- Blue -->
+    <apply velocity="0.2,2.2,0">
+        <region>
+            <cuboid min="-57,51,-74" max="-53,52,-70"/>
+        </region>
+    </apply>
+    <apply velocity="0,2.2,0.2">
+        <region>
+            <cuboid min="-74,51,-57" max="-70,52,-53"/>
+        </region>
+    </apply>
+  <!-- Red -->
+    <apply velocity="-0.2,2.2,0">
+        <region>
+            <cuboid min="57,51,74" max="53,52,70"/>
+        </region>
+    </apply>
+    <apply velocity="0,2.2,-0.2">
+        <region>
+            <cuboid min="74,51,57" max="70,52,53"/>
+        </region>
+    </apply>
+    <cuboid name="red_catalyst_left" min="-55,106,-9" max="-59,71,-5"/>
+    <cuboid name="red_catalyst_right" min="-9,106,-55" max="-5,71,-59"/>
+    <cuboid name="blue_catalyst_left" min="55,106,9" max="59,71,5"/>
+    <cuboid name="blue_catalyst_right" min="9,106,55" max="5,71,59"/>
+    <cuboid name="map" min="-75,0,-75" max="75,256,75">
+    <apply block="deny-all">
+      <negative>
+        <region name="map"/>
+      </negative>
+    </apply>
+</regions>
+<destroyables>
+  <!-- Blue Obj -->
+  <destroyable id="red_catalyst_left" name="Left Catalyst" owner="blue" show-progress="true" materials="stained glass:red" sparks="true" proximity-metric="closest block" proximity-horizontal="true">
+    <region name="pillar"/>
+  </destroyable>
+  <destroyable id="red_catalyst_right" name="Right Catalyst" owner="blue" show-progress="true" materials="stained glass:red" sparks="true" proximity-metric="closest block" proximity-horizontal="true">
+    <region name="pillar"/>
+  </destroyable>
+  <!-- Red Obj -->
+  <destroyable id="blue_catalyst_left" name="Left Catalyst" owner="red" show-progress="true" materials="stained glass:blue" sparks="true" proximity-metric="closest block" proximity-horizontal="true">
+    <region name="pillar"/>
+  </destroyable>
+  <destroyable id="blue_catalyst_right" name="Right Catalyst" owner="red" show-progress="true" materials="stained glass:blue" sparks="true" proximity-metric="closest block" proximity-horizontal="true">
+    <region name="pillar"/>
+  </destroyable>
+</destroyables>
+<itemremove>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>
+  on
+</timelock>
+</map>

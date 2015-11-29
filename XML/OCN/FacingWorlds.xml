@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Facing Worlds</name>
+<version>2.1.1</version>
+<objective>
+    Capture the enemy flag 3 times to win!
+</objective>
+<authors>
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" /> <!-- Frac -->
+</authors>
+<contributors>
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"> Help w/ Map Design </contributor> <!-- Tywnis -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"> XML Proof Reading </contributor> <!-- Ollyj -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
+</teams>
+<spawns safe="true">
+    <spawn team="blue" kit="blue-spawn">.
+        <regions yaw="180">
+            <cuboid min="-15,15,43" max="-13,16,45"/>
+            <cuboid min="15,15,43" max="13,16,45"/>
+            <cuboid min="-1,15,51" max="-1,16,53"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-spawn">
+        <regions yaw="0">
+            <cuboid min="15,15,-43" max="13,16,-45"/>
+            <cuboid min="-15,15,-43" max="-13,16,-45"/>
+            <cuboid min="1,15,-51" max="1,16,-53"/>
+        </regions>
+    </spawn>
+    <default kit="obs"> <!-- random yaw -->
+        <regions>
+            <cuboid min="1,21,1" max="-1,21,-1"/>
+        </regions>
+    </default>
+</spawns>
+<score>
+    <limit>3</limit>
+</score>
+<flags>
+    <flag id="blue-flag" color="blue" name="Blue Flag" owner="blue">
+        <post pickup-filter="red-only">-9,15,44</post>
+    </flag>
+    <flag id="red-flag" color="red" name="Red Flag" owner="red">
+        <post pickup-filter="blue-only">9,15,-44</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag" rescue="blue-flag" />
+        <net region="red-net" flag="blue-flag" rescue="red-flag" />
+    </flags>
+</flags>
+<regions>
+    <cuboid id="blue-net" min="-8,15,44" max="-9,16,45"/>
+    <cuboid id="red-net" min="9,15,-44" max="10,16,-43"/>
+    <apply block="never">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply kit="sniperkit">
+        <region>
+            <union>
+                <!-- Blue -->
+                <cuboid min="0,33,41" max="1,36,40"/>
+                <cuboid min="0,26,37" max="1,28,36"/>
+                <!-- Red -->
+                <cuboid min="1,26,-36" max="0,28,-35"/>
+                <cuboid min="1,33,-40" max="0,35,-39"/>
+            </union>
+        </region>
+    </apply>
+    <apply lend-kit="noKnockback">
+        <region>
+            <union>
+                <cuboid min="-15,15,43" max="-13,16,45"/>
+                <cuboid min="15,15,43" max="13,16,45"/>
+                <cuboid min="15,15,-43" max="13,16,-45"/>
+                <cuboid min="-15,15,-43" max="-13,16,-45"/>
+            </union>
+        </region>
+    </apply>
+    <apply kit="armorkit">
+        <region>
+            <union>
+                <!-- Blue -->
+                <cuboid min="-2,40,43" max="-1,42,42"/>
+                <!-- Red -->
+                <cuboid min="3,40,-42" max="2,42,-41"/>
+            </union>
+        </region>
+    </apply>
+    <apply kit="meelekit">
+        <region>
+            <union>
+                <!-- Blue -->
+                <cuboid min="2,40,43" max="3,42,42"/>
+                <!-- Red -->
+                <cuboid min="-1,40,-42" max="-2,42,-41"/>
+            </union>
+        </region>
+    </apply>
+    <apply kit="healthkit">
+        <region>
+            <union>
+                <!-- Blue -->
+                <cuboid min="3,15,-46" max="2,17,-45"/>
+                <cuboid min="-1,15,-46" max="-2,17,-45"/>
+                <!-- Red -->
+                <cuboid min="-2,15,47" max="-1,17,46"/>
+                <cuboid min="2,15,47" max="3,17,46"/>
+            </union>
+        </region>
+    </apply>
+</regions>
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+</filters>
+<portals>
+    <!-- Blue Tower -->
+    <!-- From Ground Floor -->
+    <portal x="@0.5" y="@26" z="@39.5" yaw="@180">
+        <region><cuboid min="9,15,43" max="10,17,44"/></region>
+    </portal>
+    <portal x="@0.5" y="@33" z="@46.5" yaw="@180">
+        <region><cuboid min="9,15,46" max="10,17,47"/></region>
+    </portal>
+    <portal x="@0.5" y="@40" z="@46.5" yaw="@180">
+        <region><cuboid min="0,15,46" max="1,17,45"/></region>
+    </portal>
+    <!-- From Portals -->
+    <portal x="@8.5" y="@15" z="@43.5" yaw="@90">
+        <region><cuboid min="0,26,41" max="1,28,40"/></region>
+    </portal>
+    <portal x="@8.5" y="@15" z="@46.5" yaw="@90">
+        <region><cuboid min="0,33,48" max="1,35,47"/></region>
+    </portal>
+    <portal x="@0.5" y="@15" z="@46.5" yaw="@0">
+        <region><cuboid min="0,40,48" max="1,43,47"/></region>
+    </portal>
+    <!-- Red Tower -->
+    <!-- From Ground Floor -->
+    <portal x="@0.5" y="11" z="4" yaw="@0">
+        <region><cuboid min="-8,15,-42" max="-9,17,-43"/></region>
+    </portal>
+    <portal x="@0.5" y="18" z="@-45.5" yaw="@0">
+        <region><cuboid min="-8,15,-45" max="-9,17,-46"/></region>
+    </portal>
+    <portal x="@0.5" y="@40" z="@-45.5" yaw="@0">
+        <region><cuboid min="1,15,-45" max="0,17,-44"/></region>
+    </portal>
+    <!-- From Portals -->
+    <portal x="@-7.5" y="-11" z="@-42.5" yaw="@-90">
+        <region><cuboid min="1,26,-39" max="0,29,-40"/></region>
+    </portal>
+    <portal x="@-7.5" y="-18" z="@-45.5" yaw="@-90">
+        <region><cuboid min="1,33,-47" max="0,36,-46"/></region>
+    </portal>
+    <portal x="@0.5" y="-25" z="@-45.5" yaw="@-180">
+        <region><cuboid min="1,40,-47" max="0,43,-46"/></region>
+    </portal>
+</portals>
+<kits>
+    <kit id="spawn">
+        <item slot="0" name="`7`lIron Sword" unbreakable="true">iron sword</item>
+        <item slot="1" name="`8`lBow" enchantment="arrow infinite" unbreakable="true">Bow</item>
+        <item slot="8">arrow</item>
+        <potion duration="2" amplifier="1">heal</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="blue-spawn" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit id="red-spawn" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit id="sniperkit" force="true">
+        <item slot="7" unbreakable="true" enchantment="durability:10" projectile="sniper" name="`a`lSniper`r`7">iron barding</item>
+    </kit>
+    <kit id="armorkit" force="true">
+        <chestplate  slot="102" unbreakable="true" name="`lDatArmor">iron chestplate</chestplate>
+        <boots  slot="100" unbreakable="true" enchantment="protection fall:6" name="`lDemBoots">iron boots</boots>
+    </kit>    
+    <kit id="healthkit" force="true">
+        <potion duration="oo" amplifier="1">absorption</potion>
+    </kit>
+    <kit id="meelekit" force="true">
+        <item slot="0" name="`b`lDiamond Sword" unbreakable="true">diamond sword</item>
+    </kit>   
+    <kit id="obs" force="true">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="noKnockback" force="true">
+        <attribute operation="add" amount="1.0">generic.knockbackResistance</attribute>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="sniper" name="sniper" projectile="Snowball" velocity="3.35" damage="10" throwable="false" click="both" cooldown="2s"/>
+</projectiles>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
+    <item>iron barding</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>
